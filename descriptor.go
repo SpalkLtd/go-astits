@@ -1465,3 +1465,13 @@ func (d *Descriptor) Serialise(b []byte) (int, error) {
 	// +2 to account for the Tag and Length fields
 	return int(d.Length + 2), nil
 }
+
+// NewUserDefinedDescriptor returns a Descriptor that Serialises to tag | len(content) | content.
+// Use for application-specific descriptors that this package doesn't model explicitly.
+func NewUserDefinedDescriptor(tag uint8, content []byte) *Descriptor {
+	return &Descriptor{
+		Tag:           tag,
+		Length:        uint8(len(content)),
+		originalBytes: content,
+	}
+}
