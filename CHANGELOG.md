@@ -1,6 +1,7 @@
 # go-astits Go MPEGTS Parser
 
 ## Unreleased
+- Revert no-alloc BytesIterator API change
 
 ## v1.9.1
 - [SA-3344] guard against nil adaptation field
