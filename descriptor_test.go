@@ -386,3 +386,12 @@ func TestParseDescriptor(t *testing.T) {
 	})
 	assert.Equal(t, *ds[25].Extension.Unknown, []byte("test"))
 }
+
+func TestNewUserDefinedDescriptor(t *testing.T) {
+	d := NewUserDefinedDescriptor(0x86, []byte{0x01, 0x02, 0x03})
+	b := make([]byte, 8)
+	n, err := d.Serialise(b)
+	assert.NoError(t, err)
+	assert.Equal(t, 5, n)
+	assert.Equal(t, []byte{0x86, 0x03, 0x01, 0x02, 0x03}, b[:n])
+}
